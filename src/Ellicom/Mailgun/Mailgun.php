@@ -140,9 +140,36 @@ class Mailgun {
     return $mail;
   }
 
-  public function compaigns(Closure $setter = null)
+  public function campaign(Closure $setter = null)
   {
-    $mail = new Mailgunner('compaigns', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+    $mail = new Mailgunner('campaigns', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function campaigns(Closure $setter = null)
+  {
+    $mail = new Mailgunner('campaigns', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function list(Closure $setter = null)
+  {
+    $mail = new Mailgunner('lists', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function lists(Closure $setter = null)
+  {
+    $mail = new Mailgunner('lists', 'GET', array('limit' => 100, 'skip' => 0), $setter);
 
     $mail->setContainer($this->container);
 
