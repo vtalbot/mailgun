@@ -18,18 +18,9 @@ class MailgunServiceProvider extends ServiceProvider {
 
     $this->app['mailgun'] = $this->app->share(function($app)
     {
-      $mailgun = new Mailgun($app['view']);
-
-      $mailgun->setLogger($app['log']);
+      $mailgun = new Mailgun;
 
       $mailgun->setContainer($app);
-
-      $from = $app['config']['ellicom/mailgun::from'];
-
-      if (is_array($from) and isset($from['address']))
-      {
-        $mailgun->alwaysFrom($from['address'], $from['name']);
-      }
 
       return $mailgun;
     });

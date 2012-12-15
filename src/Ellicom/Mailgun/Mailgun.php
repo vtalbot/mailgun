@@ -17,47 +17,159 @@ class Mailgun {
   protected $views;
 
   /**
-   * The global from address and name
-   *
-   * @var array
-   */
-  protected $from;
-
-  /**
-   * The log writer instance.
-   *
-   * @var Illuminate\Log\Writer
-   */
-  protected $logger;
-
-  /**
    * The IoC container instance.
    *
    * @var Illuminate\Container
    */
   protected $container;
 
-  /**
-   * Create a new Mailgun instance.
-   *
-   * @param  Illuminate\View\Environment  $views
-   * @return void
-   */
-  public function __construct(Environment $views)
+  public function message(Closure $setter = null)
   {
-    $this->views = $views;
+    $mail = new Mailgunner('messages', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
   }
 
-  /**
-   * Set the global from address and name.
-   *
-   * @param  string  $address
-   * @param  string  $name
-   * @return void
-   */
-  public function alwaysFrom($address, $name = null)
+  public function unsubscribe(Closure $setter = null)
   {
-    $this->from = compact('address', 'name');
+    $mail = new Mailgunner('unsubscribes', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function unsubscribes(Closure $setter = null)
+  {
+    $mail = new Mailgunner('unsubscribes', 'GET', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function complaint(Closure $setter = null)
+  {
+    $mail = new Mailgunner('complaints', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function complaints(Closure $setter = null)
+  {
+    $mail = new Mailgunner('complaints', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function bounce(Closure $setter = null)
+  {
+    $mail = new Mailgunner('bounces', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function bounces(Closure $setter = null)
+  {
+    $mail = new Mailgunner('bounces', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function stats(Closure $setter = null)
+  {
+    $mail = new Mailgunner('stats', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function log(Closure $setter = null)
+  {
+    $mail = new Mailgunner('log', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function route(Closure $setter = null)
+  {
+    $mail = new Mailgunner('routes', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function routes(Closure $setter = null)
+  {
+    $mail = new Mailgunner('routes', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function mailbox(Closure $setter = null)
+  {
+    $mail = new Mailgunner('mailboxes', 'POST', array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function mailboxes(Closure $setter = null)
+  {
+    $mail = new Mailgunner('mailboxes', 'GE', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function compaigns(Closure $setter = null)
+  {
+    $mail = new Mailgunner('compaigns', 'GET', array('limit' => 100, 'skip' => 0), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function __call($request, $arguments)
+  {
+    $method = 'GET';
+
+    if (count($arguments) > 1)
+    {
+      $method = array_shift($arguments);
+    }
+
+    $setter = array_shift($arguments);
+
+    $mail = new Mailgunner($request, $method, array(), $setter);
+
+    $mail->setContainer($this->container);
+
+    return $mail;
+  }
+
+  public function setContainer(Container $container)
+  {
+    $this->container = $container;
   }
 
 }
