@@ -158,24 +158,6 @@ class Mailgun {
     return $mail;
   }
 
-  public function list(Closure $setter = null)
-  {
-    $mail = new Mailgunner('lists', 'POST', array(), $setter);
-
-    $mail->setContainer($this->container);
-
-    return $mail;
-  }
-
-  public function lists(Closure $setter = null)
-  {
-    $mail = new Mailgunner('lists', 'GET', array('limit' => 100, 'skip' => 0), $setter);
-
-    $mail->setContainer($this->container);
-
-    return $mail;
-  }
-
   public function __call($request, $arguments)
   {
     $method = 'GET';
