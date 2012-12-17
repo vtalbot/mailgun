@@ -85,7 +85,7 @@ class Mailgunner {
         return join('&', $query);
     }
 
-    public function deliver(Closure $callback)
+    public function deliver(Closure $callback = null)
     {
         $ch = curl_init();
 
