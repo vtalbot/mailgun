@@ -3,9 +3,9 @@
 namespace Ellicom\Mailgun;
 
 use Closure;
-use Illuminate\Container;
 use Illuminate\Log\Writer;
 use Illuminate\View\Environment;
+use Illuminate\Container\Container;
 
 class Mailgun {
 

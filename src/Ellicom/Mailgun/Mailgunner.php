@@ -3,7 +3,7 @@
 namespace Ellicom\Mailgun;
 
 use Closure;
-use Illuminate\Container;
+use Illuminate\Container\Container;
 use Illuminate\Support\Contracts\RenderableInterface as Renderable;
 
 class Mailgunner {

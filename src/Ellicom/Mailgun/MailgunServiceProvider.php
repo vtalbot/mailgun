@@ -2,7 +2,6 @@
 
 namespace Ellicom\Mailgun;
 
-use Illuminate\Support\MessageBag;
 use Illuminate\Support\ServiceProvider;
 
 class MailgunServiceProvider extends ServiceProvider {
