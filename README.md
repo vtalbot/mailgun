@@ -1,8 +1,12 @@
 # Mailgun  for Laravel 4 (Illuminate)
 
-[![Build Status](https://travis-ci.org/Ellicom/mailgun.png)](https://travis-ci.org/Ellicom/mailgun)
-
 ### Installation
+
+Add to your composer.json those lines
+
+    "require": {
+        "ellicom/mailgun": "1.*"
+    }
 
 Run `php artisan config:publish ellicom/mailgun`
 
@@ -58,7 +62,3 @@ And set parameters by using the parameter name in the documentation on each meth
     $mail->attachment = 'image2'; // transform attachment parameters in array and add image2
 
     $mail->path('more'); // Will add 'more' after the url (eg. https://api.mailgun.net/v2/domain.com/complaints/more)
-
-### Todo
-
-Add tests.
