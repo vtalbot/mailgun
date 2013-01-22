@@ -5,15 +5,15 @@
 Add to your composer.json those lines
 
     "require": {
-        "ellicom/mailgun": "1.*"
+        "vtalbot/mailgun": "1.*"
     }
 
-Run `php artisan config:publish ellicom/mailgun`
+Run `php artisan config:publish vtalbot/mailgun`
 
-Then edit `config.php` in `app/packages/ellicom/mailgun` to your needs.
+Then edit `config.php` in `app/packages/vtalbot/mailgun` to your needs.
 
-Add `'Ellicom\Mailgun\MailgunServiceProvider',` to `providers` in `app/config/app.php`
-and `'Mailgun' => 'Ellicom\Mailgun\Facades\Mailgun',` to `aliases` in `app/config/app.php`
+Add `'VTalbot\Mailgun\MailgunServiceProvider',` to `providers` in `app/config/app.php`
+and `'Mailgun' => 'VTalbot\Mailgun\Facades\Mailgun',` to `aliases` in `app/config/app.php`
 
 ### Usage
 

@@ -11,7 +11,7 @@
          syntaxCheck="false"
 >
   <testsuites>
-    <testsuite name="Ellicom Mailgun Test Suite">
+    <testsuite name="VTalbot Mailgun Test Suite">
       <directory>./tests/</directory>
     </testsuite>
   </testsuites>

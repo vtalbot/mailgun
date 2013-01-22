@@ -1,6 +1,6 @@
 <?php
 
-namespace Ellicom\Mailgun\Facades;
+namespace VTalbot\Mailgun\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

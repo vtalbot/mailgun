@@ -1,6 +1,6 @@
 <?php
 
-namespace Ellicom\Mailgun;
+namespace VTalbot\Mailgun;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class MailgunServiceProvider extends ServiceProvider {
    */
   public function register()
   {
-    $this->app['config']->package('ellicom/mailgun', 'ellicom/mailgun', 'ellicom/mailgun');
+    $this->app['config']->package('vtalbot/mailgun', 'vtalbot/mailgun', 'vtalbot/mailgun');
 
     $this->app['mailgun'] = $this->app->share(function($app)
     {

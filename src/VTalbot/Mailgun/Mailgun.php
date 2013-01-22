@@ -1,6 +1,6 @@
 <?php
 
-namespace Ellicom\Mailgun;
+namespace VTalbot\Mailgun;
 
 use Closure;
 use Illuminate\Log\Writer;

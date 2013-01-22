@@ -1,5 +1,5 @@
 {
-  "name": "ellicom/mailgun",
+  "name": "vtalbot/mailgun",
   "description": "Mailgun for Laravel 4 (Illuminate)",
   "keywords": ["laravel", "mailgun", "illuminate"],
   "license": "MIT",
@@ -17,7 +17,7 @@
     "mockery/mockery": "0.7.2"
   },
   "autoload": {
-    "psr-0": {"Ellicom\\Mailgun": "src/"}
+    "psr-0": {"VTalbot\\Mailgun": "src/"}
   },
   "extra": {
     "branch-alias": {

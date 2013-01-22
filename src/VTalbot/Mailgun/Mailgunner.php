@@ -1,6 +1,6 @@
 <?php
 
-namespace Ellicom\Mailgun;
+namespace VTalbot\Mailgun;
 
 use Closure;
 use Illuminate\Container\Container;
@@ -41,8 +41,8 @@ class Mailgunner {
     {
         $app = $this->container;
 
-        $url = $app['config']['ellicom/mailgun::url'];
-        $url .= $app['config']['ellicom/mailgun::domain'].'/';
+        $url = $app['config']['vtalbot/mailgun::url'];
+        $url .= $app['config']['vtalbot/mailgun::domain'].'/';
         $url .= $this->cmd;
 
         if (isset($this->path))
@@ -95,7 +95,7 @@ class Mailgunner {
 
         $query = $this->build_query();
 
-        $auth = 'api:'.$app['config']['ellicom/mailgun::key'];
+        $auth = 'api:'.$app['config']['vtalbot/mailgun::key'];
 
         if ($this->method === 'GET' and count($q) > 0)
         {
