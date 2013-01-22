@@ -13,6 +13,9 @@
     "php": ">=5.3.0",
     "laravel/framework": ">=4.0"
   },
+  "replace": {
+      "ellicom/mailgun": "*"
+  },
   "require-dev": {
     "mockery/mockery": "0.7.2"
   },
