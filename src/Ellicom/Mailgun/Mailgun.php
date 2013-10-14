@@ -133,7 +133,7 @@ class Mailgun {
 
   public function mailboxes(Closure $setter = null)
   {
-    $mail = new Mailgunner('mailboxes', 'GE', array('limit' => 100, 'skip' => 0), $setter);
+    $mail = new Mailgunner('mailboxes', 'GET', array('limit' => 100, 'skip' => 0), $setter);
 
     $mail->setContainer($this->container);
 
