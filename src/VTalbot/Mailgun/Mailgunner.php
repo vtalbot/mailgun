@@ -6,8 +6,8 @@ use Closure;
 use Illuminate\Container\Container;
 use Illuminate\Support\Contracts\RenderableInterface as Renderable;
 
-class Mailgunner {
-
+class Mailgunner
+{
     protected $data;
 
     protected $method;
@@ -26,8 +26,7 @@ class Mailgunner {
 
         $this->data = array();
 
-        if ( ! is_null($setter) and is_callable($setter))
-        {
+        if ( ! is_null($setter) and is_callable($setter)) {
             call_user_func_array($setter, array($this));
         }
     }
@@ -45,8 +44,7 @@ class Mailgunner {
         $url .= $app['config']['vtalbot/mailgun::domain'].'/';
         $url .= $this->cmd;
 
-        if (isset($this->path))
-        {
+        if (isset($this->path)) {
             $url .= '/'.$this->path;
         }
 
@@ -56,32 +54,25 @@ class Mailgunner {
     protected function build_query()
     {
         $query = array();
-        foreach ($this->data as $key => $value)
-        {
+        foreach ($this->data as $key => $value) {
             $key = str_replace('_', '-', $key);
-            if (is_array($value))
-            {
-                foreach ($value as $val)
-                {
-                    if ($val instanceof Renderable)
-                    {
+            if (is_array($value)) {
+                foreach ($value as $val) {
+                    if ($val instanceof Renderable) {
                         $val = $val->render();
                     }
-                    
+
                     $query[] = urlencode($key).'='.urlencode($val);
                 }
-            }
-            else
-            {
-                if ($value instanceof Renderable)
-                {
+            } else {
+                if ($value instanceof Renderable) {
                     $value = $value->render();
                 }
 
                 $query[] = urlencode($key).'='.urlencode($value);
             }
         }
-        
+
         return join('&', $query);
     }
 
@@ -97,8 +88,7 @@ class Mailgunner {
 
         $auth = 'api:'.$app['config']['vtalbot/mailgun::key'];
 
-        if ($this->method === 'GET' and count($q) > 0)
-        {
+        if ($this->method === 'GET' and count($q) > 0) {
             $url .= '?'.$query;
         }
 
@@ -111,8 +101,7 @@ class Mailgunner {
             CURLOPT_SSL_VERIFYPEER => false,
         );
 
-        if ($this->method === 'POST')
-        {
+        if ($this->method === 'POST') {
             $options[CURLOPT_POST] = true;
             $options[CURLOPT_POSTFIELDS] = $query;
         }
@@ -122,8 +111,7 @@ class Mailgunner {
         $response = curl_exec($ch);
         curl_close($ch);
 
-        if ( ! is_null($callback) and is_callable($callback))
-        {
+        if ( ! is_null($callback) and is_callable($callback)) {
             return call_user_func_array($callback, array($response));
         }
 
@@ -132,14 +120,10 @@ class Mailgunner {
 
     public function param($key, $value)
     {
-        if ( ! isset($this->data[$key]))
-        {
+        if ( ! isset($this->data[$key])) {
             $this->data[$key] = $value;
-        }
-        else
-        {
-            if ( ! is_array($this->data[$key]))
-            {
+        } else {
+            if ( ! is_array($this->data[$key])) {
                 $this->data[$key] = array($this->data[$key]);
             }
 
@@ -186,8 +170,7 @@ class Mailgunner {
 
     public function __get($key)
     {
-        if (isset($this->data[$key]))
-        {
+        if (isset($this->data[$key])) {
             return $this->data[$key];
         }
 
@@ -201,12 +184,9 @@ class Mailgunner {
 
     public function __call($key, $values)
     {
-        if (count($values) === 1)
-        {
+        if (count($values) === 1) {
             $this->data[$key] = $values[0];
-        }
-        else if (count($values) > 1)
-        {
+        } elseif (count($values) > 1) {
             $this->data[$key] = $values;
         }
 
