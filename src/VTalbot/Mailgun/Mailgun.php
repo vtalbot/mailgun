@@ -3,12 +3,11 @@
 namespace VTalbot\Mailgun;
 
 use Closure;
-use Illuminate\Log\Writer;
 use Illuminate\View\Environment;
 use Illuminate\Container\Container;
 
-class Mailgun {
-
+class Mailgun
+{
   /**
    * The view environment instance.
    *
@@ -162,8 +161,7 @@ class Mailgun {
   {
     $method = 'GET';
 
-    if (count($arguments) > 1)
-    {
+    if (count($arguments) > 1) {
       $method = array_shift($arguments);
     }
 
